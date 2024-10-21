@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="details"></div>
+    <script>
+        
+        let detail = document.getElementById('details')
+        fetch('/showUser')
+        .then(res=>res.json())
+        .then(data => {
+           data.forEach((ele)=>{
+            let userName = document.createElement('h1')
+            userName.innerHTML = ele.name
+            let image = document.createElement('img');
+            const filePath = "/images/"
+            image.src= filePath + ele.image;
+            document.body.appendChild(userName);
+            document.body.appendChild(image);
+           })
+        })
+        .catch(err=>console.log(err))
+    </script>
+</body>
+
+</html>
